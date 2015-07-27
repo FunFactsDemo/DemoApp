@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "Mixpanel.h"
+
 
 @interface AppDelegate ()
 
@@ -19,7 +21,14 @@
     // Override point for customization after application launch.
     
     [application setStatusBarStyle:UIStatusBarStyleLightContent];
+    [Mixpanel sharedInstanceWithToken: @"kav123"];
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel setFlushInterval:1];
+    /* Now either flush in background or flush with a custom timer */
+    [mixpanel registerSuperProperties:@{@"testing":@"app Update"}];
     
+    [mixpanel track:@"App Launched"];
+    // [mixpanel flush];
     return YES;
 }
 

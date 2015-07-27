@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "FactBook.h"
 #import "ColorWheel.h"
+#import "Mixpanel/MPTweakInline.h"
 
 @interface ViewController ()
 
@@ -27,6 +28,8 @@
     self.funFactButton.tintColor = randomColor;
     
     self.funFactLabel.text = [self.factBook randomFact];
+    
+    MPTweakBind(self.funFactLabel, text, @"Label Text", @"Ostriches are the tallest animals in the world");
     
     
 }
